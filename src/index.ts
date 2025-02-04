@@ -1,22 +1,32 @@
 import mongoose from "mongoose";
-import express, { Request, Response } from "express";
+import express from "express";
+import path from "path"; //работа со статическими путями.
+import userRoutes from "./routes/user.routes";
 
 const app = express();
 const port = 3000;
 
 const start = async () => {
   try {
-    // Подключение к MongoDB.
+    //подключение к MongoDB.
     await mongoose.connect("mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000");
-
     console.log("Connected to MongoDB");
 
+    //обработка http запросов.
     app.use(express.json());
+    app.use(express.urlencoded({ extended: true }));
 
-    app.get("/", (req: Request, res: Response) => {
-      res.send("Hello, Express with TypeScript!");
+    //установка статической папки для HTML файлов.
+    app.use(express.static(path.join(__dirname, 'views'))); 
+
+    //исходная страница.
+    app.get("/", (req, res) => {
+      res.redirect("/register"); 
     });
 
+    app.use("/", userRoutes);
+
+    //запуск сервера.
     app.listen(port, () => {
       console.log(`Server is running on http://localhost:${port}`);
     });
@@ -26,4 +36,5 @@ const start = async () => {
   }
 };
 
+//запуск приложения.
 start();
