@@ -1,21 +1,12 @@
-import { Router } from "express";
-import { registerUser } from "../controllers/user.controller";
-import path from "path"; 
-
+//мартршуты для пользователей.
+import { Router } from 'express';
+import { registerUser, deleteUser, getUserProfile } from '../controllers/user.controller';
+import { authenticateToken } from '../middleware/authenticateToken';
 
 const router = Router();
 
-//маршрут для отображения формы регистрации.
-router.get("/register", (req, res) => {
-  res.sendFile(path.join(__dirname, '../views/register.html'));
-});
-
-//маршрут для обработки регистрации пользователя.
-router.post("/register", registerUser );
-
-//маршрут для страницы успешной регистрации.
-router.get("/success", (req, res) => {
-  res.sendFile(path.join(__dirname, '../views/success.html'));
-});
+router.post('/register', registerUser);
+router.delete('/:id', authenticateToken, deleteUser);
+router.get('/profile', authenticateToken, getUserProfile);
 
 export default router;
