@@ -4,8 +4,8 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const port = process.env.PORT || 3000;
-const dbUrl = process.env.MONGO_URL;
+const port = process.env.PORT || 4700;
+const dbUrl = "mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000"
 
 if (!dbUrl) {
   throw new Error('MONGO_URL не установлен в .env файле.');
