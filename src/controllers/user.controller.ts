@@ -56,13 +56,11 @@ export const deleteUser = async (req: Request, res: Response): Promise<void> => 
 
 export const getUserProfile = async (req: Request, res: Response): Promise<void> => {
   try {
-    //что пользователь аутентифицирован.
     if (!req.user) {
       res.status(401).json({ message: 'Пользователь не аутентифицирован' });
       return;
     }
 
-    //req.user.userId для поиска пользователя.
     const user = await User.findById(req.user.userId).select('-password');
     if (!user) {
       res.status(404).json({ message: 'Пользователь не найден' });

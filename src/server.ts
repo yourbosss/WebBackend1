@@ -1,11 +1,13 @@
 import mongoose from 'mongoose';
 import app from './app';
 import dotenv from 'dotenv';
+import path from 'path'; // Добавляем импорт path
 
-dotenv.config();
+// Явно указываем путь к .env файлу (на уровень выше папки src)
+dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
-const port = process.env.PORT || 4700;
-const dbUrl = "mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000"
+const port = process.env.PORT || 3000;
+const dbUrl = process.env.MONGO_URL;
 
 if (!dbUrl) {
   throw new Error('MONGO_URL не установлен в .env файле.');

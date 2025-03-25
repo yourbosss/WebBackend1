@@ -1,4 +1,3 @@
-//мартршуты для пользователей.
 import { Router } from 'express';
 import { registerUser, deleteUser, getUserProfile } from '../controllers/user.controller';
 import { authenticateToken } from '../middleware/authenticateToken';
