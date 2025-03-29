@@ -3,7 +3,6 @@ import app from './app';
 import dotenv from 'dotenv';
 import path from 'path'; // Добавляем импорт path
 
-// Явно указываем путь к .env файлу (на уровень выше папки src)
 dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
 const port = process.env.PORT || 3000;
