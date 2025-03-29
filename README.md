@@ -102,6 +102,14 @@ DELETE /api/users/<user_id>
 
 authorization  Bearer ваш_JWT_токен
 
+##
+
+Проверка существования пользователя
+
+GET /api/users/profile
+
+authorization  Bearer ваш_JWT_токен
+
 
 
 ## Примечания
