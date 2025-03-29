@@ -12,11 +12,73 @@
 
 ---
 
-## Установка и запуск
+## 🚀 Запуск проекта
 
-### Предварительные требования
-- Установите [Node.js](https://nodejs.org/) (v18+)
-- Установите [Yarn](https://yarnpkg.com/):  
+### 1️⃣ Установка зависимостей
+**Перед началом установите:**
+- [Node.js](https://nodejs.org/) (LTS-версия)
+- [Yarn](https://yarnpkg.com/):
+  ```bash
+  npm install -g yarn
+MongoDB (локально или через Docker)
+
+Клонирование репозитория:
+
+bash
+Copy
+git clone https://github.com/ваш-репозиторий.git
+cd ваш-репозиторий
+2️⃣ Настройка окружения
+Создайте файл .env в корне проекта:
+
+env
+Copy
+PORT=3000
+DB_URL=mongodb://localhost:27017/ваша-база
+JWT_SECRET=ваш_секретный_ключ
+3️⃣ Запуск сервера
+Режим разработки (с hot-reload):
+
+bash
+Copy
+yarn run dev
+Сервер будет доступен по адресу:
+http://localhost:3000
+
+📡 API Endpoints
+🔐 Аутентификация
+POST /api/auth/login
+Тело запроса:
+
+json
+Copy
+{
+  "username": "ivanov",
+  "password": "password123"
+}
+👥 Пользователи
+Регистрация
+POST /api/users/register
+Тело запроса:
+
+json
+Copy
+{
+  "firstName": "Иван",
+  "lastName": "Иванов",
+  "username": "ivanov",
+  "password": "password123",
+  "role": "student"
+}
+Получение профиля
+GET /api/users/profile
+Требуется:
+Authorization: Bearer ваш_JWT_токен
+
+Удаление пользователя
+DELETE /api/users/<user_id>
+Требуется:
+Authorization: Bearer ваш_JWT_токен
 
 
 
@@ -34,17 +96,6 @@
 
 
 
-
-📌 Описание
-1WebBackLab — это серверная часть веб-приложения, разработанная на Node.js с использованием Express и MongoDB. Проект предоставляет API для управления пользователями и данными, аутентификации и авторизации.
-
-⚙️ Технологии
-Node.js — среда выполнения JavaScript
-Express.js — веб-фреймворк для Node.js
-MongoDB — NoSQL база данных
-Yarn — менеджер пакетов
-Mongoose — ODM для работы с MongoDB
-JWT (JSON Web Token) — механизм аутентификации
 
 🚀 Запуск проекта
 1️⃣ Установка зависимостей
